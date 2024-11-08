@@ -36,4 +36,20 @@ export class AssignmentsController {
     }
     return true;
   }
+
+  @Get('factorial/:number')
+  calculateFactorial(@Param('number') number: number): { factorial: number } {
+    const factorial = this.factorial(Number(number));
+    return { factorial };
+  }
+
+  private factorial(num: number): number {
+    if (num < 0) return -1; // Return -1 for negative numbers to indicate invalid input
+    if (num === 0 || num === 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= num; i++) {
+      result *= i;
+    }
+    return result;
+  }
 }
